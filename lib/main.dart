@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:skeleton_text/skeleton_text.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
-List<BoxShadow> shadowList = [
-  BoxShadow(
-      color: Colors.green[300]!, blurRadius: 30, offset: const Offset(0, 10))
-];
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,100 +10,81 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Skeleton Text Demo",
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      title: 'Flutter Demo',
+      theme: _appTheme,
+      home: const MyHomePage(title: 'Flutter Demo Box Decoration'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+final _appTheme = ThemeData(
+  primarySwatch: Colors.amber,
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(
+      fontWeight: FontWeight.w900,
+      fontSize: 40,
+      color: Colors.black,
+    ),
+  ),
+);
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
       ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.black54,
-        body: ListView.builder(
-          scrollDirection: Axis.vertical,
-          physics: const BouncingScrollPhysics(),
-          itemCount: 5,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 240,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: SkeletonAnimation(
-                      shimmerColor: Colors.green,
-                      borderRadius: BorderRadius.circular(20),
-                      shimmerDuration: 1000,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.green[300],
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: shadowList,
-                        ),
-                        margin: const EdgeInsets.only(top: 40),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(top: 60, bottom: 20),
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        boxShadow: shadowList,
-                        borderRadius: const BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(left: 15.0, bottom: 5.0),
-                            child: SkeletonAnimation(
-                              borderRadius: BorderRadius.circular(10.0),
-                              shimmerColor: index % 2 != 0
-                                  ? Colors.green
-                                  : Colors.white54,
-                              child: Container(
-                                height: 30,
-                                width: MediaQuery.of(context).size.width * 0.35,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: Colors.green[300]),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15.0),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 5.0),
-                              child: SkeletonAnimation(
-                                borderRadius: BorderRadius.circular(10.0),
-                                shimmerColor: index % 2 != 0
-                                    ? Colors.green
-                                    : Colors.white54,
-                                child: Container(
-                                  width: 60,
-                                  height: 30,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10.0),
-                                      color: Colors.green[300]),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'BoxDecoration Example',
+            ),
+            Container(
+              width: 300,
+              height: 300,
+              decoration: BoxDecoration(
+                color: const Color(0xff7c8954),
+                border: Border.all(
+                  width: 8,
+                ),
+                borderRadius: BorderRadius.circular(12),
               ),
-            );
-          },
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
+              height: 150,
+              width: 300,
+              child: const Text(
+                'Another Sample',
+                style: TextStyle(
+                  fontWeight: FontWeight.w900,
+                  fontSize: 40,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
   }
 }
+// adding new
