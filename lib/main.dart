@@ -11,9 +11,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return new MaterialApp(
-      title: 'Lazy Load Demo',
-      home: new MyHomePage(title: 'Lazy Load Demo'),
+    return const MaterialApp(
+      title: 'Lazy Load Demonstration',
+      home: MyHomePage(title: 'Lazy Load Demonstration'),
     );
   }
 }
@@ -90,27 +90,30 @@ class _MyHomePageState extends State<MyHomePage> {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  'Nested horizontal ListView',
+                  'A Nested horizontal ListView',
                   textAlign: TextAlign.center,
                 ),
               ),
               SizedBox(
-                  height: 180,
-                  child: LazyLoadScrollView(
-                      isLoading: isLoadingHorizontal,
-                      scrollDirection: Axis.horizontal,
-                      onEndOfPage: () => _loadMoreHorizontal(),
-                      child: Scrollbar(
-                          child: ListView.builder(
-                              itemCount: horizontalData.length,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, position) {
-                                return DemoItem(position);
-                              })))),
+                height: 200,
+                child: LazyLoadScrollView(
+                  isLoading: isLoadingHorizontal,
+                  scrollDirection: Axis.horizontal,
+                  onEndOfPage: () => _loadMoreHorizontal(),
+                  child: Scrollbar(
+                    child: ListView.builder(
+                        itemCount: horizontalData.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, position) {
+                          return DemoItem(position);
+                        }),
+                  ),
+                ),
+              ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text(
-                  'Vertical ListView',
+                  'A Vertical ListView',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -152,7 +155,7 @@ class DemoItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                    color: Colors.grey,
+                    color: Colors.blue,
                     height: 40.0,
                     width: 40.0,
                   ),
@@ -161,7 +164,7 @@ class DemoItem extends StatelessWidget {
                 ],
               ),
               const Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sed vulputate orci. Proin id scelerisque velit. Fusce at ligula ligula. Donec fringilla sapien odio, et faucibus tortor finibus sed. Aenean rutrum ipsum in sagittis auctor. Pellentesque mattis luctus consequat. Sed eget sapien ut nibh rhoncus cursus. Donec eget nisl aliquam, ornare sapien sit amet, lacinia quam."),
+                  'On a stormy night, the wind howls through the streets, whipping tree branches and trash cans around. The sky is dark and foreboding, with lightning illuminating the clouds from within. Rain pounds against windows and roofs, creating a cacophony of sound. The air is heavy with the smell of ozone and wet pavement. Inside, people huddle under blankets, listening to the storm rage outside. Some curl up with a good book, while others sit by the fireplace and watch the lightning flash through the windows. The power flickers on and off, causing shadows to dance across the walls.'),
             ],
           ),
         ),
