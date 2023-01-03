@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_three_new/main_sliver.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,40 +16,72 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  onButtonTap(Widget page) {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (BuildContext context) => page));
+  }
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: [SystemUiOverlay.bottom]);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Demo Home Page'),
+        title: Text(widget.title),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              margin: const EdgeInsets.all(20.00),
-              width: 400.0,
-              height: 400.0,
-              child: const Text(
-                'I an Text Widget, inside Containter Widget.',
-                style: TextStyle(
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            )
+            const Text(
+              'You have pushed the button this many times:',
+            ),
+            MyMenuButton(
+              title: "Custom AppBar & SliverAppBar",
+              actionTap: () {
+                onButtonTap(const MainAppBarSliverAppBar());
+              },
+            ),
           ],
         ),
       ),
     );
   }
 }
+
 // adding new
+class MyMenuButton extends StatelessWidget {
+  final String? title;
+  final VoidCallback? actionTap;
+
+  const MyMenuButton({super.key, this.title, this.actionTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: MaterialButton(
+        height: 50.0,
+        color: Theme.of(context).primaryColor,
+        textColor: Colors.white,
+        onPressed: actionTap,
+        child: Text(title!),
+      ),
+    );
+  }
+}
