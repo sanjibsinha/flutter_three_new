@@ -13,13 +13,22 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: _appTheme,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
+
+final _appTheme = ThemeData(
+  primarySwatch: Colors.amber,
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(
+      fontWeight: FontWeight.w900,
+      fontSize: 34,
+      color: Colors.black,
+    ),
+  ),
+);
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -38,10 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: [SystemUiOverlay.bottom]);
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.redAccent, // not same color
+          statusBarIconBrightness: Brightness.dark, // for Android
+          statusBarBrightness: Brightness.light, // for iOS
+        ),
         title: Text(widget.title),
       ),
       body: Center(
