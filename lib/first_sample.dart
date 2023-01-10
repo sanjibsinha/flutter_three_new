@@ -37,7 +37,7 @@ class MyCustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return Column(
       children: [
         Container(
-          color: Colors.grey[300],
+          color: Colors.redAccent,
           child: Padding(
             padding: const EdgeInsets.all(30),
             child: defaultAppBar
