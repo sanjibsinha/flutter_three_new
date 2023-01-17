@@ -52,35 +52,22 @@ class _MyHomePageState extends State<MyHomePage> {
               'BoxDecoration Example',
             ),
             Container(
-              width: 300,
-              height: 300,
+              margin: const EdgeInsets.all(30.00),
+              width: 350.00,
+              height: 350.00,
               decoration: BoxDecoration(
-                color: const Color(0xff7c8954),
+                color: const Color(0xff7c94b6),
+                image: const DecorationImage(
+                  image: NetworkImage(
+                      'https://cdn.pixabay.com/photo/2023/01/10/16/23/hedgehog-7710053_960_720.jpg'),
+                  fit: BoxFit.cover,
+                ),
                 border: Border.all(
                   width: 8,
                 ),
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(color: Colors.grey),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              margin: const EdgeInsets.all(10),
-              padding: const EdgeInsets.all(10),
-              height: 150,
-              width: 300,
-              child: const Text(
-                'Another Sample',
-                style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 40,
-                  color: Colors.black,
-                ),
-              ),
-            )
           ],
         ),
       ),
