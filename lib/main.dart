@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,40 +11,62 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      theme: _appTheme,
+      home: const MyHomePage(title: 'Flutter Demo Box Decoration'),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
   final String title;
 
   @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+final _appTheme = ThemeData(
+  primarySwatch: Colors.amber,
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(
+      fontWeight: FontWeight.w900,
+      fontSize: 40,
+      color: Colors.black,
+    ),
+  ),
+);
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
   Widget build(BuildContext context) {
-    Text text = const Text('This is Text Widget');
-    Scaffold scaffold = const Scaffold();
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(widget.title),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            GestureDetector(
-              child: Text(
-                'It\'s a Text Widget. Below an Image Widget.',
-                style: Theme.of(context).textTheme.headline5,
+            const Text(
+              'BoxDecoration Example',
+            ),
+            Container(
+              margin: const EdgeInsets.all(30.00),
+              width: 350.00,
+              height: 350.00,
+              decoration: BoxDecoration(
+                color: const Color(0xff7c94b6),
+                image: const DecorationImage(
+                  image: NetworkImage(
+                      'https://cdn.pixabay.com/photo/2023/01/10/16/23/hedgehog-7710053_960_720.jpg'),
+                  fit: BoxFit.cover,
+                ),
+                border: Border.all(
+                  width: 8,
+                ),
+                borderRadius: BorderRadius.circular(12),
               ),
-              onTap: () {
-                print(text.runtimeType);
-                print(scaffold.runtimeType);
-              },
             ),
           ],
         ),
